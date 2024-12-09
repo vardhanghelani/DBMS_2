@@ -109,3 +109,97 @@ EXEC PR_PERSON_INSERT 'Neha', 'Trivedi',18000,'2014-02-20',3,15
 SELECT *FROM Department
 SELECT *FROM Designation
 SELECT *FROM Person
+
+--UPDATE AND DELETE LEFT 
+
+--Department, Designation & Person Table’s SELECTBYPRIMARYKEY
+CREATE OR ALTER PROC PR_PERSON_SelectByPrimaryKey
+	@PERSONID INT
+AS
+BEGIN
+	SELECT * FROM Person 
+	WHERE PersonID =@PERSONID
+END
+
+EXEC PR_PERSON_SelectByPrimaryKey 102
+--DEPARTMENT SelectByPrimaryKey
+CREATE OR ALTER PROC PR_DEPARTMENT_SelectByPrimaryKey
+	@DEPARTMENTID INT
+AS
+BEGIN
+	SELECT *FROM Department
+	WHERE DepartmentID=@DEPARTMENTID
+END
+
+EXEC PR_DEPARTMENT_SelectByPrimaryKey 2
+
+--DESIGNATION SelectByPrimaryKey
+CREATE OR ALTER PROC PR_DESIGNATION_SelectByPrimaryKey
+	@DESIGNATIONID INT
+AS
+BEGIN
+	SELECT *FROM Designation
+	WHERE DesignationID=@DESIGNATIONID
+END
+
+exec PR_DESIGNATION_SelectByPrimaryKey 13
+
+--Department, Designation & Person Table’s (If foreign key is available then do write join and take 
+--columns on select list) 
+
+--PERSON SELECTALL
+CREATE OR ALTER PROC PR_PERSON_SELECTALL
+AS
+BEGIN 
+	SELECT PersonID,FirstName,LastName,Salary,JoiningDate,Department.DepartmentName,DESIGNATION.DesignationName  FROM Person
+	JOIN Department ON PERSON.DepartmentID=Department.DepartmentID
+	JOIN Designation ON Person.DesignationID=Designation.DesignationID
+END 
+
+EXEC PR_PERSON_SELECTALL
+ 
+ --DEPARTMENT SELECTALL
+
+ CREATE OR ALTER PROC PR_DEPARTMENT_SELCETALL
+ AS
+ BEGIN 
+	SELECT * FROM Department
+END
+
+EXEC PR_DEPARTMENT_SELCETALL
+
+CREATE OR ALTER PROC PR_DESIGNATION_SELECTALL
+AS 
+BEGIN 
+	SELECT * FROM Designation
+END 
+
+EXEC PR_DESIGNATION_SELECTALL
+ --Create a Procedure that shows details of the first 3 persons. 
+CREATE OR ALTER PROC PR_PERSON_SELECTTOP3
+AS
+BEGIN
+	SELECT TOP 3 * FROM Person
+END 
+
+EXEC PR_PERSON_SELECTTOP3
+
+
+--Part – B 
+--5. Create a Procedure that takes the department name as input and returns a table with all workers working in that department.
+CREATE OR ALTER PROC PR_DEPARTMENT_DepName
+	@DEPARTMENTNAME VARCHAR(100)
+AS 
+BEGIN
+	SELECT FIRSTNAME,LastName,Salary,JoiningDate,Person.DepartmentID,Person.DesignationID,DEPARTMENTNAME FROM Person JOIN Department
+	ON PERSON.DepartmentID=Department.DepartmentID
+	WHERE DepartmentName=@DEPARTMENTNAME
+END 
+
+EXEC PR_DEPARTMENT_DepName 'IT'
+--6. Create Procedure that takes department name & designation name as input and returns a table with  worker’s first name, salary, joining date & department name.
+
+--7. Create a Procedure that takes the first name as an input parameter and display all the details of the 
+--worker with their department & designation name. 
+--8. Create Procedure which displays department wise maximum, minimum & total salaries. 
+--9. Create Procedure which displays designation wise average & total salaries.
