@@ -1,0 +1,37 @@
+use DARSHAN
+use DIET
+show dbs
+db
+db.dropDatabase()
+use DARSHAN
+db.createCollection('Student')
+show collections
+db.Department.insertOne({Dname:'CE',HOD:'Patel'})
+db.Department.insertMany([{Dname:'IT'},{Dname:'ICT'}])
+db.Department.drop()
+db.Student.insertOne({Name:'Vardhan',City:'Rajkot',Branch:'CSE',Semester:'4',Age:'20'})
+db.Student.insertMany([{Name:'Tanish',City:'Rajkot',Branch:'CSE',Semester:'4',Age:'19'},{Name:'Abbas',City:'Rajkot',Branch:'CSE',Semester:'4',Age:'19'},{Name:'Harshil',City:'Rajkot',Branch:'BBA',Semester:'2',Age:'19'}])
+db.getCollectionNames()
+if (db.getCollectionNames().indexOf("Student") !== -1) {
+    print("Collection 'Student' exists.");
+} else {
+    print("Collection 'Student' does not exist.");
+}
+db.Student.stats
+db.Student.drop()
+db.createCollection('Deposit')
+db.Deposit.insertMany([
+  { ACTNO: 101, CNAME: 'ANIL', BNAME: 'VRCE', AMOUNT: 1000.00, CITY: 'RAJKOT' },
+  { ACTNO: 102, CNAME: 'SUNIL', BNAME: 'AJNI', AMOUNT: 5000.00, CITY: 'SURAT' },
+  { ACTNO: 103, CNAME: 'MEHUL', BNAME: 'KAROLBAGH', AMOUNT: 3500.00, CITY: 'BARODA' },
+  { ACTNO: 104, CNAME: 'MADHURI', BNAME: 'CHANDI', AMOUNT: 1200.00, CITY: 'AHMEDABAD' },
+  { ACTNO: 105, CNAME: 'PRMOD', BNAME: 'M.G. ROAD', AMOUNT: 3000.00, CITY: 'SURAT' },
+  { ACTNO: 106, CNAME: 'SANDIP', BNAME: 'ANDHERI', AMOUNT: 2000.00, CITY: 'RAJKOT' },
+  { ACTNO: 107, CNAME: 'SHIVANI', BNAME: 'VIRAR', AMOUNT: 1000.00, CITY: 'SURAT' },
+  { ACTNO: 108, CNAME: 'KRANTI', BNAME: 'NEHRU PLACE', AMOUNT: 5000.00, CITY: 'RAJKOT' }
+]
+)
+db.Deposit.find()
+db.Deposit.drop()
+
+
