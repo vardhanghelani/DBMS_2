@@ -25,3 +25,75 @@ db.employee.find({ENAME:{$regex:/il/} })
 db.employee.find({ENAME:{$not:/a/} })
 db.employee.find({ENAME:{$regex:/\d/} })
 db.employee.find({ENAME:{$regex:/^[^aeiou]*[aeiou][^aeiou]*$/i} })
+db.employee.find({ENAME:{$regex:/^[A-Z][a-z]/}})
+db.Student.find({sname:{$regex: /^K/ } });
+db.Student.find(
+    { sname: { $regex: /^[ZD]/ } }
+);
+db.Student.find(
+    { city: { $regex: /^[A-R]/ } }
+);
+db.Student.find(
+    { sname: { $regex: /^P.*i$/ } }
+);
+db.Student.find(
+    { department: { $regex: /^C/ } }
+);
+
+db.Student.find(
+    { city: { $regex: /med/ } },
+    { sname: 1, sem: 1, fees: 1, department: 1, _id: 0 }
+);
+db.Student.find(
+    { city: { $nin: ["Rajkot", "Baroda"] } },
+    { sname: 1, sem: 1, fees: 1, department: 1, _id: 0 }
+);
+db.Student.find(
+    { sname: { $regex: /^K./ } },
+    { sname: 1, _id: 0 }
+);
+db.Student.find(
+    { sname: { $regex: /a$/ } },
+    { sname: 1, _id: 0 }
+);
+db.Student.find(
+    { sname: { $regex: /ri/i } },
+    { sname: 1, _id: 0 }
+);
+db.Student.find(
+    { sname: { $regex: /^[AEIOU]/i } }
+);
+db.Student.find(
+    { city: { $regex: /(pur|bad)$/i } }
+);
+db.Student.find(
+    { fees: { $regex: /^1/ } }
+);
+db.Student.find(
+    { sname: { $regex: /^[KV]/i } }
+);
+db.Student.find(
+    { city: { $regex: /^.{5}$/ } }
+);
+db.Student.find(
+    { sname: { $not: /e/i } }
+);
+db.Student.find(
+    { city: { $regex: /^Ra.*ot$/i } }
+);
+db.Student.find(
+    { sname: { $regex: /^[^aeiou]*[aeiou][^aeiou]*$/i } }
+);
+db.Student.find(
+    { sname: { $regex: /^(.).*\1$/i } }
+);
+db.Student.find(
+    { department: { $regex: /^[CE]/i } }
+);
+db.Student.find(
+    { sname: { $regex: /^.{5}$/ } }
+);
+db.Student.find(
+    { gender: 'Female', city: { $regex: /^A/i } }
+);
+
