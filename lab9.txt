@@ -1,0 +1,39 @@
+db.Student.updateOne({name:"John"},
+                     {$set:{age:30}})
+db.Student.updateMany({city:"New York"},
+                      {$set:{city:"New Jersey"}})db.Student.updateMany({age:{$gt:35}},
+                      {$set:{isActive:false}})
+
+db.Student.updateMany({},{$inc:{age:1}})
+db.Student.updateOne({name:"Eva"},{$set:{city:"Cambridge"}})
+db.Student.updateOne({name:"Sophia"},{$set:{isActive:false}})
+db.Student.updateMany({age:{$lt:30}},{$set:{city:"San Diego"}})
+db.Student.updateMany({},{$rename:{age:"years"}})
+db.Student.updateOne({name:"Nick"},{$set:{isActive:true}})
+db.Student.updateMany({},{$set:{country:"Usa"}},{$upsert:true})
+db.Student.updateOne({name:"David"},{$set:{city:"Orlando"}})
+db.Student.updateMany(
+  {},  
+  { $mul: { years: 2 } } 
+);
+db.Student.updateOne({name:"Tom"},{$unset:{city:""}})
+db.Student.updateMany({age:{$gt:30}},{$set:{premiumUser:true}},{$unsert:true})
+db.Student.updateOne({name:"Jane"},{$set:{isActive:true}})
+db.Student.updateOne({name:"Lucy"},{$set:{isActive:false}})
+db.Student.deleteOne({name:"Nick"})
+db.Student.deleteMany({isActie:false})
+db.Student.deleteMany({isActive:false})
+db.Student.deleteMany({city:"New York"})
+db.Student.deleteOne({name:"Olivia"})
+	db.Student.deleteMany({ age: { $lt: 25 } });
+db.Student.deleteOne({ isActive: true });
+db.Student.deleteMany({ city: 'Los Angeles' });
+db.Student.deleteMany({ city: { $exists: false } });
+db.Student.updateMany({}, { $rename: { "city": "location" } });
+db.Student.updateMany({ name: 'John' }, { $rename: { "name": "FullName" } });
+db.Student.updateMany({}, { $rename: { "isActive": "status" } });
+db.Student.updateMany(
+  { city: 'San Francisco' },
+  { $rename: { "age": "yearsOld" } }
+);
+
